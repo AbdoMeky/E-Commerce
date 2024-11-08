@@ -9,7 +9,7 @@ namespace ECO.API.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;//it Chacked
         public ProductController(IProductRepository productRepository)
         {
             _productRepository = productRepository;
@@ -45,14 +45,14 @@ namespace ECO.API.Controllers
             return Ok(result);
         }
         [HttpPost]
-        public ActionResult Add(AddProductDTO product)
+        public async Task<ActionResult> Add(AddProductDTO product)
         {
             if (ModelState.IsValid)
             {
-                var result=_productRepository.Add(product);
+                var result=await _productRepository.Add(product);
                 if(result.Id==0)
                 {
-                    return BadRequest(result.Id);
+                    return BadRequest(result.Massage);
                 }
                 string url=Url.Action(nameof(GetProduct),new {id=result.Id});
                 return Created(url, _productRepository.GetProductById(result.Id));
@@ -60,11 +60,11 @@ namespace ECO.API.Controllers
             return BadRequest(ModelState);
         }
         [HttpPatch]
-        public ActionResult Update(EditProductDTO product, int id)
+        public async Task<ActionResult> Update(EditProductDTO product, int id)
         {
             if (ModelState.IsValid)
             {
-                var result = _productRepository.Update(product,id);
+                var result =await _productRepository.Update(product,id);
                 if (result.Id == 0)
                 {
                     return BadRequest(result.Id);

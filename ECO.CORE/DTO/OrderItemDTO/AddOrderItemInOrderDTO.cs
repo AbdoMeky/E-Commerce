@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace ECO.CORE.DTO.OrderItemDTO
 {
-    public class EditOrderItemDTO
+    public class AddOrderItemInOrderDTO
     {
         [Required]
         public int Quantity { get; set; }
+        [Required]
+        public int ProductId { get; set; }
     }
 }

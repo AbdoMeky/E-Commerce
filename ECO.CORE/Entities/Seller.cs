@@ -20,7 +20,6 @@ namespace ECO.CORE.Entities
             this.UserName = saller.UserName;
             this.PhoneNumber = saller.PhoneNumber;
             this.Email = saller.Email;
-
         }
     }
 }

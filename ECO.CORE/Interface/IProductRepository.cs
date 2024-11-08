@@ -1,5 +1,7 @@
 ﻿using ECO.CORE.DTO;
+using ECO.CORE.DTO.OrderItemDTO;
 using ECO.CORE.DTO.ProductDTO;
+using ECO.CORE.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,9 @@ namespace ECO.CORE.Interface
         ShowOneProductDTO GetProductById(int productId);
         Task<IntResultDTO> Add(AddProductDTO product);
         IntResultDTO Delete(int productId);
-        IntResultDTO Update(EditProductDTO product,int id);
-        
+        Task<IntResultDTO> Update(EditProductDTO product,int id);
+        ItemPriceDTO Decrease(int productId,int quantityNeeded);
+        Product GetProductWithItems(int productId); 
+        string ShowProductSeller(int productId);
     }
 }

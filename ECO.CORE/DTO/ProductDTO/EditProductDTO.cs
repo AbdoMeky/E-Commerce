@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace ECO.CORE.DTO.ProductDTO
         [Required]
         public decimal Price { get; set; }
         [Required]
-        public string ImagePath { get; set; }
+        public IFormFile Image {  get; set; }
         [Required]
         public int Quantity { get; set; }
         [Required]

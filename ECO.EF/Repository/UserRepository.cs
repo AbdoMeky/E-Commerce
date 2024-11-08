@@ -1,4 +1,5 @@
 ﻿using ECO.CORE.DTO;
+using ECO.CORE.DTO.OrderDTO;
 using ECO.CORE.DTO.UserDTO;
 using ECO.CORE.Entities;
 using ECO.CORE.Interface;
@@ -12,12 +13,14 @@ using System.Threading.Tasks;
 
 namespace ECO.EF.Repository
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
-        public UserRepository(AppDbContext context)
+        private readonly IOrderRepository _orderRepository;
+        public UserRepository(AppDbContext context, IOrderRepository orderRepository)
         {
             _context = context;
+            _orderRepository = orderRepository;
         }
         public StringResultDTO Edit(EditUserDTO user, string id)
         {
@@ -39,6 +42,14 @@ namespace ECO.EF.Repository
                 return new StringResultDTO() { Massage = ex.Message };
             }
             return new StringResultDTO() { Id = id };
+        }
+        public bool Check(string Id)
+        {
+            return _context.Users.Find(Id) is not null;
+        }
+        public List<ShowOrderDTO> OrderUserDo(string id)
+        {
+            return _orderRepository.GetOrdersForUser(id);
         }
     }
 }

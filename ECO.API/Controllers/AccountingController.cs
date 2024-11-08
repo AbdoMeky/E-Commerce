@@ -10,7 +10,7 @@ namespace ECO.API.Controllers
     [ApiController]
     public class AccountingController : ControllerBase
     {
-        private readonly IAccountingRepository _accountingRepository;
+        private readonly IAccountingRepository _accountingRepository;//it cheked
         public AccountingController(IAccountingRepository accountingRepository)
         {
             this._accountingRepository = accountingRepository;

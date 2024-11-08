@@ -11,9 +11,10 @@ namespace ECO.CORE.Interface
     public interface IOrderRepository
     {
         ShowOrderDTO Get(int id);
-        List<ShowOrderDTO> GetOrdersForUser(int userId);
-        IntResultDTO Add(string UserId);
+        List<ShowOrderDTO> GetOrdersForUser(string userId);
+        IntResultDTO Add(AddOrderDTO order);
         IntResultDTO MakeItReseved(int id);
         IntResultDTO Delete(int id);
+        IntResultDTO IsReady(int id);
     }
 }
